@@ -6,7 +6,6 @@ import mainModule from './main-module.ts';
 import { Router } from '@angular/router';
 
 const ngLifecycles = singleSpaAngular({
-  domElementGetter,
   mainModule,
   angularPlatform: platformBrowserDynamic(),
   template: `<app2 />`,
@@ -23,16 +22,4 @@ export function mount(props) {
 
 export function unmount(props) {
   return ngLifecycles.unmount(props);
-}
-
-function domElementGetter() {
-  // Make sure there is a div for us to render into
-  let el = document.getElementById('app2');
-  if (!el) {
-    el = document.createElement('div');
-    el.id = 'app2';
-    document.body.appendChild(el);
-  }
-
-  return el;
 }
